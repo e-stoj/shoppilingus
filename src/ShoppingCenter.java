@@ -1,11 +1,14 @@
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class ShoppingCenter {
-    String name;
-    String address;
-    List<Shop> shops;
+    private int id;
+    private String name;
+    private String address;
+    private List<Shop> shops;
 
     public void addShop(Shop shop) {
         shops.add(shop);
@@ -47,5 +50,37 @@ public class ShoppingCenter {
                 .filter(shop -> shop.id == shopId)
                 .findFirst()
                 .orElse(null);
+    }
+
+    public List<Product> getAllProducts(){
+        LinkedList<Product> allProducts = new LinkedList();
+        for(Shop shop : shops){
+            for(ProductDetails productDetail : shop.products){
+                allProducts.add(productDetail.product);
+            }
+        }
+        return allProducts;
+    }
+
+    public List<Service> getAllServices(){
+        LinkedList<Service> allServices = new LinkedList();
+        for(Shop shop : shops){
+                allServices.addAll(shop.services);
+        }
+        return allServices;
+    }
+
+    public Set<String> getAllShopTypes(){
+        Set<String> allShopTypes = new HashSet<>();
+        for(Shop shop : shops){
+            allShopTypes.addAll(shop.type);
+        }
+        return allShopTypes;
+    }
+
+    public Set<String> getAllProductTypes(){
+        return getAllProducts().stream()
+                .map(product -> product.type)
+                .collect(Collectors.toSet());
     }
 }

@@ -1,9 +1,9 @@
 public class ProductDetails {
     public Product product;
-    public double qualitity;
+    public double quantity;
 
-    ProductDetails(Product product, double qualitity){
+    ProductDetails(Product product, double quantity){
         this.product = product;
-        this.qualitity = qualitity;
+        this.quantity = quantity;
     }
 }
