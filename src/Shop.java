@@ -1,12 +1,30 @@
+import java.util.LinkedList;
 import java.util.List;
 
 public class Shop {
-    private String name;
-    private String address;
-    List<ProductDetails> products;
-    String[] type;
-    List<Service> services;
-    List<Employee> employees;
+    private static int nextId = 0;
+
+    public int id;
+    public String name;
+    private Location location;
+    private List<ProductDetails> products;
+    private List<String> type;
+    private List<Service> services;
+    private List<Employee> employees;
+
+    public Shop(String name, int floor, int box, List<String> types){
+        this.id = nextId++;
+        this.name = name;
+        this.location = new Location(floor, box);
+        this.type = types;
+        this.products = new LinkedList<ProductDetails>();
+        this.services = new LinkedList<Service>();
+        this.employees = new LinkedList<Employee>();
+    }
+
+    public Shop(String name, int floor, int box){
+        this(name, floor, box, new LinkedList<String>());
+    }
 
     void addProduct(Product product, double qualitity){
         ProductDetails currentProduct = null;
@@ -55,10 +73,6 @@ public class Shop {
             }
         }
         return false;
-    }
-
-    void buyProduct(Product product){
-
     }
 
 }
