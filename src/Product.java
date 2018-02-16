@@ -1,34 +1,68 @@
+import types.ProductTypes;
+
 public class Product {
     private static int nextId = 0;
 
-    public int id;
-    public String name;
+    private int id;
+    private String name;
     private double price;
-    public String type;
-    private String size;
-    private double weight;
+    private ProductTypes type;
     private double tax;
 
-    public Product(String name, double price, String type, String size, double weight, double tax) {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public ProductTypes getType() {
+        return type;
+    }
+
+    public double getTax() {
+        return tax;
+    }
+
+    public Product(String name, double price, ProductTypes type, double tax) {
         this.id = nextId++;
         this.name = name;
         this.price = price;
         this.type = type;
-        this.size = size;
-        this.weight = weight;
         this.tax = tax;
     }
 
-    public Product(String name, double price, String type){
-        this(name, price, type, null, 0, 0);
+    public Product(String name, double price, ProductTypes type) {
+        this(name, price, type, 0);
     }
 
-    public double getNettoPrice(Product product){
-        return product.price;
+    public Product(String name, double price){
+        this(name, price, null, 0);
     }
 
-    public double getBruttoPrice(Product product){
-        double bruttoPrice = product.price + product.price * product.tax;
+    public double getPriceForCompany() {
+        return price;
+    }
+
+    public double getPriceForConsumer() {
+        double bruttoPrice = price + price * tax;
         return bruttoPrice;
+    }
+
+    public String getFullName() {
+        return name;
+    }
+
+    public void print() {
+        System.out.println(getFullName());
     }
 }

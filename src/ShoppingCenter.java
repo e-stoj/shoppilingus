@@ -1,3 +1,6 @@
+import types.ProductTypes;
+import types.ShopTypes;
+
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -16,7 +19,7 @@ public class ShoppingCenter {
 
     public Shop getShop(int shopId) {
         for (Shop currentShop : shops) {
-            if (currentShop.id == shopId) {
+            if (currentShop.getId() == shopId) {
                 return currentShop;
             }
         }
@@ -25,14 +28,14 @@ public class ShoppingCenter {
 
     public void updateShop(int shopId, Shop modifiedShop) {
         deleteShop(shopId);
-        modifiedShop.id = shopId;
+        modifiedShop.setId(shopId);
         addShop(modifiedShop);
     }
 
     public void deleteShop(int shopId) {
         for (int i = 0; i < shops.size(); i++) {
             Shop currentShop = shops.get(i);
-            if (currentShop.id == shopId) {
+            if (currentShop.getId() == shopId) {
                 shops.remove(currentShop);
                 break;
             }
@@ -41,46 +44,46 @@ public class ShoppingCenter {
 
     public List<Shop> findShopsByName(String name) {
         return shops.stream()
-                .filter(shop -> shop.name.equals(name))
+                .filter(shop -> shop.getName().equals(name))
                 .collect(Collectors.toList());
     }
 
     public Shop findShopById(int shopId) {
         return shops.stream()
-                .filter(shop -> shop.id == shopId)
+                .filter(shop -> shop.getId() == shopId)
                 .findFirst()
                 .orElse(null);
     }
 
-    public List<Product> getAllProducts(){
+    public List<Product> getAllProducts() {
         LinkedList<Product> allProducts = new LinkedList();
-        for(Shop shop : shops){
-            for(ProductDetails productDetail : shop.products){
-                allProducts.add(productDetail.product);
+        for (Shop shop : shops) {
+            for (ProductDetails productDetail : shop.getProducts()) {
+                allProducts.add(productDetail.getProduct());
             }
         }
         return allProducts;
     }
 
-    public List<Service> getAllServices(){
+    public List<Service> getAllServices() {
         LinkedList<Service> allServices = new LinkedList();
-        for(Shop shop : shops){
-                allServices.addAll(shop.services);
+        for (Shop shop : shops) {
+            allServices.addAll(shop.getServices());
         }
         return allServices;
     }
 
-    public Set<String> getAllShopTypes(){
-        Set<String> allShopTypes = new HashSet<>();
-        for(Shop shop : shops){
-            allShopTypes.addAll(shop.type);
+    public Set<ShopTypes> getAllShopTypes() {
+        Set<ShopTypes> allShopTypes = new HashSet<>();
+        for (Shop shop : shops) {
+            allShopTypes.addAll(shop.getType());
         }
         return allShopTypes;
     }
 
-    public Set<String> getAllProductTypes(){
+    public Set<ProductTypes> getAllProductTypes() {
         return getAllProducts().stream()
-                .map(product -> product.type)
+                .map(product -> product.getType())
                 .collect(Collectors.toSet());
     }
 }
