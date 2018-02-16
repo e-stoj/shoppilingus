@@ -1,6 +1,6 @@
 package types;
 
-public enum ServiceTypes {
+public enum ServiceType {
     HAIRCUT,
     KEY_CUTTING
 }

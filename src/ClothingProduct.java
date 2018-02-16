@@ -1,11 +1,11 @@
-import types.ProductTypes;
-import types.SizeTypes;
+import types.ProductType;
+import types.SizeType;
 
 public class ClothingProduct extends Product {
-    SizeTypes size;
+    SizeType size;
 
-    ClothingProduct(String name, double price, SizeTypes size) {
-        super(name, price, ProductTypes.CLOTHES, 0.23);
+    ClothingProduct(String name, double price, SizeType size) {
+        super(name, price, ProductType.CLOTHES, 0.23);
         this.size = size;
     }
 

@@ -1,4 +1,4 @@
-import types.ProductTypes;
+import types.ProductType;
 
 public class Product {
     private static int nextId = 0;
@@ -6,7 +6,7 @@ public class Product {
     private int id;
     private String name;
     private double price;
-    private ProductTypes type;
+    private ProductType type;
     private double tax;
 
     public int getId() {
@@ -25,7 +25,7 @@ public class Product {
         return price;
     }
 
-    public ProductTypes getType() {
+    public ProductType getType() {
         return type;
     }
 
@@ -33,7 +33,7 @@ public class Product {
         return tax;
     }
 
-    public Product(String name, double price, ProductTypes type, double tax) {
+    public Product(String name, double price, ProductType type, double tax) {
         this.id = nextId++;
         this.name = name;
         this.price = price;
@@ -41,7 +41,7 @@ public class Product {
         this.tax = tax;
     }
 
-    public Product(String name, double price, ProductTypes type) {
+    public Product(String name, double price, ProductType type) {
         this(name, price, type, 0);
     }
 

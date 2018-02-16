@@ -1,4 +1,4 @@
-import types.ShopTypes;
+import types.ShopType;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -10,7 +10,7 @@ public class Shop {
     private String name;
     private Location location;
     private List<ProductDetails> products;
-    private List<ShopTypes> type;
+    private List<ShopType> type;
     private List<Service> services;
     private List<Employee> employees;
 
@@ -30,7 +30,7 @@ public class Shop {
         return products;
     }
 
-    public List<ShopTypes> getType() {
+    public List<ShopType> getType() {
         return type;
     }
 
@@ -42,7 +42,7 @@ public class Shop {
         return employees;
     }
 
-    public Shop(String name, int floor, int box, List<ShopTypes> types) {
+    public Shop(String name, int floor, int box, List<ShopType> types) {
         this.id = nextId++;
         this.name = name;
         this.location = new Location(floor, box);
@@ -53,7 +53,7 @@ public class Shop {
     }
 
     public Shop(String name, int floor, int box) {
-        this(name, floor, box, new LinkedList<ShopTypes>());
+        this(name, floor, box, new LinkedList<ShopType>());
     }
 
     public void addProduct(Product product, double quantity) {

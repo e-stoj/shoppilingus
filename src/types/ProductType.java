@@ -1,6 +1,6 @@
 package types;
 
-public enum ProductTypes {
+public enum ProductType {
     BOOK,
     FOOD,
     DRUG,

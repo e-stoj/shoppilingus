@@ -1,6 +1,6 @@
 package types;
 
-public enum SizeTypes {
+public enum SizeType {
     S,
     M,
     L,

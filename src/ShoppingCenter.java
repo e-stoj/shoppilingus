@@ -1,5 +1,5 @@
-import types.ProductTypes;
-import types.ShopTypes;
+import types.ProductType;
+import types.ShopType;
 
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -73,15 +73,15 @@ public class ShoppingCenter {
         return allServices;
     }
 
-    public Set<ShopTypes> getAllShopTypes() {
-        Set<ShopTypes> allShopTypes = new HashSet<>();
+    public Set<ShopType> getAllShopTypes() {
+        Set<ShopType> allShopTypes = new HashSet<>();
         for (Shop shop : shops) {
             allShopTypes.addAll(shop.getType());
         }
         return allShopTypes;
     }
 
-    public Set<ProductTypes> getAllProductTypes() {
+    public Set<ProductType> getAllProductTypes() {
         return getAllProducts().stream()
                 .map(product -> product.getType())
                 .collect(Collectors.toSet());

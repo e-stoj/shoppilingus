@@ -1,6 +1,6 @@
 package types;
 
-public enum ShopTypes{
+public enum ShopType {
     BOOKSHOP,
     GROCERY,
     JEWELLERY,
