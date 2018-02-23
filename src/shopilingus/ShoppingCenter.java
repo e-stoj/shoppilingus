@@ -1,10 +1,9 @@
-import types.ProductType;
-import types.ShopType;
+package shopilingus;
 
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import shopilingus.types.ProductType;
+import shopilingus.types.ShopType;
+
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ShoppingCenter {
@@ -12,6 +11,15 @@ public class ShoppingCenter {
     private String name;
     private String address;
     private List<Shop> shops;
+
+    public List<Shop> getShops() {
+        return shops;
+    }
+
+    public ShoppingCenter(String name){
+        this.name = name;
+        shops = new ArrayList<>();
+    }
 
     public void addShop(Shop shop) {
         shops.add(shop);

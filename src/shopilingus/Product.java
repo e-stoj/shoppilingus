@@ -1,4 +1,6 @@
-import types.ProductType;
+package shopilingus;
+
+import shopilingus.types.ProductType;
 
 public class Product {
     private static int nextId = 0;

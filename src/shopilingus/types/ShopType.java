@@ -1,4 +1,4 @@
-package types;
+package shopilingus.types;
 
 public enum ShopType {
     BOOKSHOP,

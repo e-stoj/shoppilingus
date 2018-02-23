@@ -1,5 +1,7 @@
-import types.ProductType;
-import types.SizeType;
+package shopilingus;
+
+import shopilingus.types.ProductType;
+import shopilingus.types.SizeType;
 
 public class ClothingProduct extends Product {
     SizeType size;

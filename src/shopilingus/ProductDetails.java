@@ -1,3 +1,5 @@
+package shopilingus;
+
 public class ProductDetails {
     private Product product;
     private double quantity;

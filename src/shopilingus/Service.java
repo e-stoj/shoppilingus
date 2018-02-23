@@ -1,3 +1,5 @@
+package shopilingus;
+
 public class Service {
     private static int nextId = 0;
 

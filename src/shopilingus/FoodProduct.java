@@ -1,4 +1,6 @@
-import types.ProductType;
+package shopilingus;
+
+import shopilingus.types.ProductType;
 
 import java.util.List;
 

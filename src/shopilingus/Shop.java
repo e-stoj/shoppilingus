@@ -1,4 +1,6 @@
-import types.ShopType;
+package shopilingus;
+
+import shopilingus.types.ShopType;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -14,7 +16,7 @@ public class Shop {
     private List<Service> services;
     private List<Employee> employees;
 
-    public int getId(){
+    public int getId() {
         return id;
     }
 
@@ -24,6 +26,10 @@ public class Shop {
 
     public String getName() {
         return name;
+    }
+
+    public Location getLocation() {
+        return location;
     }
 
     public List<ProductDetails> getProducts() {

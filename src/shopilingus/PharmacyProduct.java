@@ -1,3 +1,5 @@
+package shopilingus;
+
 public class PharmacyProduct extends Product {
     private String newType;
     private double refund;
