@@ -9,6 +9,14 @@ public class Product {
     private ProductTypes type;
     private double tax;
 
+    public Product(String name, double price, ProductTypes type, double tax) {
+        this.id = nextId++;
+        this.name = name;
+        this.price = price;
+        this.type = type;
+        this.tax = tax;
+    }
+
     public int getId() {
         return id;
     }
@@ -33,29 +41,12 @@ public class Product {
         return tax;
     }
 
-    public Product(String name, double price, ProductTypes type, double tax) {
-        this.id = nextId++;
-        this.name = name;
-        this.price = price;
-        this.type = type;
-        this.tax = tax;
-    }
-
-    public Product(String name, double price, ProductTypes type) {
-        this(name, price, type, 0);
-    }
-
-    public Product(String name, double price){
-        this(name, price, null, 0);
-    }
-
     public double getPriceForCompany() {
         return price;
     }
 
     public double getPriceForConsumer() {
-        double bruttoPrice = price + price * tax;
-        return bruttoPrice;
+        return price + price * tax;
     }
 
     public String getFullName() {

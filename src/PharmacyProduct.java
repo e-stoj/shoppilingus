@@ -1,17 +1,17 @@
+import types.ProductTypes;
+
 public class PharmacyProduct extends Product {
-    private String newType;
     private double refund;
     private String latinName;
 
-    public PharmacyProduct(String name, double price, String newType, double refund, String latinName) {
-        super(name, price);
-        this.newType = newType;
-        this.refund = 0.70;
+    public PharmacyProduct(String name, double price, ProductTypes type, double tax, double refund, String latinName) {
+        super(name, price, type, tax);
+        this.refund = refund;
         this.latinName = latinName;
     }
 
-    public PharmacyProduct(String name, double price, String newType, String latinName) {
-        this(name, price, newType, 0, latinName);
+    public PharmacyProduct(String name, double price, ProductTypes type, double tax, String latinName) {
+        this(name, price, type, tax, 0.7, latinName);
     }
 
     @Override
@@ -21,7 +21,6 @@ public class PharmacyProduct extends Product {
 
     @Override
     public double getPriceForConsumer() {
-        double resultPrice = (getPrice() * (1 + getTax())) * (1-refund);
-        return resultPrice;
+        return (getPrice() * (1 + getTax())) * (1-refund);
     }
 }

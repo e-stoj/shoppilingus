@@ -14,7 +14,21 @@ public class Shop {
     private List<Service> services;
     private List<Employee> employees;
 
-    public int getId(){
+    public Shop(String name, int floor, int box, List<ShopTypes> types) {
+        this.id = nextId++;
+        this.name = name;
+        this.location = new Location(floor, box);
+        this.type = types;
+        this.products = new LinkedList<ProductDetails>();
+        this.services = new LinkedList<Service>();
+        this.employees = new LinkedList<Employee>();
+    }
+
+    public Shop(String name, int floor, int box) {
+        this(name, floor, box, new LinkedList<ShopTypes>());
+    }
+
+    public int getId() {
         return id;
     }
 
@@ -40,20 +54,6 @@ public class Shop {
 
     public List<Employee> getEmployees() {
         return employees;
-    }
-
-    public Shop(String name, int floor, int box, List<ShopTypes> types) {
-        this.id = nextId++;
-        this.name = name;
-        this.location = new Location(floor, box);
-        this.type = types;
-        this.products = new LinkedList<ProductDetails>();
-        this.services = new LinkedList<Service>();
-        this.employees = new LinkedList<Employee>();
-    }
-
-    public Shop(String name, int floor, int box) {
-        this(name, floor, box, new LinkedList<ShopTypes>());
     }
 
     public void addProduct(Product product, double quantity) {
@@ -85,9 +85,11 @@ public class Shop {
 
     public void updateProduct(int id, Product product) {
         ProductDetails toModify = findProductDetails(id);
-        deleteProduct(id);
-        product.setId(id);
-        toModify.setProduct(product);
+        if (toModify != null) {
+            deleteProduct(id);
+            product.setId(id);
+            toModify.setProduct(product);
+        }
     }
 
     public void deleteProduct(int id) {
@@ -119,14 +121,19 @@ public class Shop {
     }
 
     public void updateService(int id, Service modifiedService) {
-        deleteService(id);
-        modifiedService.setId(id);
-        addService(modifiedService);
+        if (getService(id) != null) {
+            deleteService(id);
+            modifiedService.setId(id);
+            addService(modifiedService);
+        }
     }
 
     public void deleteService(int id) {
         Service service = getService(id);
-        services.remove(service);
+        if (service != null) {
+            services.remove(service);
+        }
+
     }
 
     public boolean isEmployeeAvilable(Employee employee) {
