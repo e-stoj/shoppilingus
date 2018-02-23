@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ClassicFilteringService implements FilteringService {
 
-    private List<Shop> filterByName(List<Shop> shops, FilteringParams params) {
+    private List<Shop> filterByNamePhrase(List<Shop> shops, FilteringParams params) {
         List<Shop> newList = new ArrayList<>();
         for (Shop shop : shops) {
             if (shop.getName().contains(params.getName())) {
@@ -33,7 +33,7 @@ public class ClassicFilteringService implements FilteringService {
     @Override
     public List<Shop> filterShops(ShoppingCenter shoppingCenter, FilteringParams params) {
         List<Shop> result = new ArrayList<>();
-        result = filterByName(shoppingCenter.getShops(), params);
+        result = filterByNamePhrase(shoppingCenter.getShops(), params);
         result = filterByFloor(result, params);
 
         return result;
