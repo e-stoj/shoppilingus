@@ -1,18 +1,20 @@
+import types.ShopTypes;
+
 import java.util.LinkedList;
 import java.util.List;
 
 public class Shop {
     private static int nextId = 0;
 
-    public int id;
-    public String name;
+    private int id;
+    private String name;
     private Location location;
     private List<ProductDetails> products;
-    private List<String> type;
+    private List<ShopTypes> type;
     private List<Service> services;
     private List<Employee> employees;
 
-    public Shop(String name, int floor, int box, List<String> types){
+    public Shop(String name, int floor, int box, List<ShopTypes> types) {
         this.id = nextId++;
         this.name = name;
         this.location = new Location(floor, box);
@@ -22,57 +24,135 @@ public class Shop {
         this.employees = new LinkedList<Employee>();
     }
 
-    public Shop(String name, int floor, int box){
-        this(name, floor, box, new LinkedList<String>());
+    public Shop(String name, int floor, int box) {
+        this(name, floor, box, new LinkedList<ShopTypes>());
     }
 
-    void addProduct(Product product, double qualitity){
-        ProductDetails currentProduct = null;
-        for(int i = 0; i < products.size(); i++){
-            currentProduct = products.get(i);
-            if(currentProduct.product.name.equals(product.name)){
-                break;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<ProductDetails> getProducts() {
+        return products;
+    }
+
+    public List<ShopTypes> getType() {
+        return type;
+    }
+
+    public List<Service> getServices() {
+        return services;
+    }
+
+    public List<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void addProduct(Product product, double quantity) {
+        ProductDetails resultProduct = findProductDetails(product.getId());
+        if (resultProduct != null) {
+            resultProduct.setQuantity(resultProduct.getQuantity() + quantity);
+        } else {
+            resultProduct = new ProductDetails(product, quantity);
+            products.add(resultProduct);
+        }
+    }
+
+    public Product getProduct(int id) {
+        ProductDetails current = findProductDetails(id);
+        if (current != null) {
+            return current.getProduct();
+        }
+        return null;
+    }
+
+    public ProductDetails findProductDetails(int id) {
+        for (ProductDetails productDetails : products) {
+            if (productDetails.getProduct().getId() == id) {
+                return productDetails;
             }
         }
+        return null;
+    }
 
-        if(currentProduct != null){
-            currentProduct.qualitity += qualitity;
-        } else {
-            currentProduct = new ProductDetails(product, qualitity);
-            products.add(currentProduct);
+    public void updateProduct(int id, Product product) {
+        ProductDetails toModify = findProductDetails(id);
+        if (toModify != null) {
+            deleteProduct(id);
+            product.setId(id);
+            toModify.setProduct(product);
         }
     }
 
-    void hire(Employee employee){
+    public void deleteProduct(int id) {
+        ProductDetails currentProduct = findProductDetails(id);
+        if (currentProduct != null) {
+            products.remove(currentProduct);
+        }
+    }
+
+    public void hire(Employee employee) {
         employees.add(employee);
     }
 
-    void fire(Employee employee){
+    public void fire(Employee employee) {
         employees.remove(employee);
     }
 
-    boolean isEmployeeAvilable(Employee employee){
-        for(int i = 0; i < employees.size(); i++){
-            Employee currentEmployee = employees.get(i);
-            if(currentEmployee.equals(employee)){
-                if(currentEmployee.isAvailable) {
+    public void addService(Service service) {
+        services.add(service);
+    }
+
+    public Service getService(int id) {
+        for (Service service : services) {
+            if (service.getId() == id) {
+                return service;
+            }
+        }
+        return null;
+    }
+
+    public void updateService(int id, Service modifiedService) {
+        if (getService(id) != null) {
+            deleteService(id);
+            modifiedService.setId(id);
+            addService(modifiedService);
+        }
+    }
+
+    public void deleteService(int id) {
+        Service service = getService(id);
+        if (service != null) {
+            services.remove(service);
+        }
+
+    }
+
+    public boolean isEmployeeAvilable(Employee employee) {
+        for (Employee currentEmployee : employees) {
+            if (currentEmployee.equals(employee)) {
+                return currentEmployee.isAvailable();
+            }
+        }
+        return false;
+    }
+
+    public boolean isProductAvailable(Product product) {
+        for (ProductDetails currentProduct : products) {
+            if (currentProduct.getProduct().equals(product)) {
+                if (currentProduct.getQuantity() > 0) {
                     return true;
-                } else {
-                    return false;
                 }
             }
         }
         return false;
     }
-
-    boolean isProductAvailable(Product product){
-        for(int i = 0; i < products.size(); i++){
-            ProductDetails currentProduct = products.get(i);
-            if(currentProduct.product.equals(product)){
-                return true;
-            }
-        }
-        return false;
-    }
-
 }
