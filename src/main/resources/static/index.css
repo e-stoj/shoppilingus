@@ -1,0 +1,53 @@
+body {
+    margin: 0px;
+    background-color: rgb(229, 229, 231);
+}
+
+header {
+    display: flex;
+    line-height: 70px;
+    background-color: #BBBBBB;
+    justify-content: center;
+}
+
+header img {
+    height: 70px;
+}
+
+h3 {
+    margin: 0px;
+}
+
+footer {
+    text-align: center;
+    background-color: #AAAAAA;
+    clear: both;
+}
+
+.shop-type {
+    display: inline-block;
+    
+}
+
+ul {
+    list-style: none;
+}
+
+.filtering {
+    background-color: #f8d7f3;
+    float: left;
+    width: 30%;
+}
+
+.result {
+    width: 70%;
+    padding-top: 10px;
+    margin: 10px;
+    margin-left: 30%;
+}
+
+.shop-elements div span {
+    margin: 10px;
+    font-size: 20px;
+}
+
