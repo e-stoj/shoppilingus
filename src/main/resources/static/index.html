@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="index.css" />
+    <script src="index.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <img src="shopping.png">
+        <h3>Shoppilingus</h3>
+    </header>
+    <div class="filtering">
+        <ul>
+            <li>
+                <span>
+                    Nazwa produktu:
+                </span>
+                <input type="textarea" class="product-name">
+                <li>
+                    <span>
+                        Nazwa sklepu:
+                    </span>
+                    <select class="shop-select">
+                        <option></option>
+                    </select>
+                    <li>Typy:
+                        <div class="shop-types">
+                        </div>
+                    </li>
+                    <li>
+                        <span>Cena:</span>
+                        <ul>
+                            <li>minimalna:
+                                <input type="textarea" class="min-price">
+                            </li>
+                            <li>maksymalna:
+                                <input type="textarea" class="max-price">
+                            </li>
+                        </ul>
+                    </li>
+        </ul>
+        <div class="button">
+            <button>Szukaj</button>
+        </div>
+    </div>
+    <div class="result">
+        <div class="shop-elements">
+
+        </div>
+        <div class="shop-products">
+
+        </div>
+
+    </div>
+    <footer>
+        © Codilingus 2017 -
+        <span class="date"></span>
+    </footer>
+</body>
+
+</html>
